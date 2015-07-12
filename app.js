@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/autor', routes);
 app.use('/quizes/question', routes);
 app.use('/quizes/answer', routes);
 
