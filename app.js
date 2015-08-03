@@ -26,12 +26,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/autor', routes);
-app.use('/quizes/question', routes);
-app.use('/quizes/answer', routes);
+app.use('/quizes', routes);
+app.use('/quizes/:quizId', routes);
+app.use('/quizes/:quizId/answer', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+    var err = new Error('Not Found URL');
     err.status = 404;
     next(err);
 });
