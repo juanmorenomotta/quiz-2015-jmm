@@ -1,3 +1,5 @@
 node_modules
 .DS_Store
 nmp_debug.log
+quiz.sqlite
+.env
