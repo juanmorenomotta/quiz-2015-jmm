@@ -28,6 +28,27 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Valida si hay session
+app.use(function(req, res, next){
+    var now = Date.now();
+    var diff=0;
+    var last;
+
+    if(req.session.user){
+        last = req.session.user.last;
+        diff = now - last;      
+        if(diff > 120000 ){
+            delete req.session.user;
+            res.redirect('/login');
+        }else{
+            req.session.user.last = Date.now();
+            next();
+        }
+    } else {
+        next();
+    }
+});
+
 // Helper dinamicos:
 app.use(function(req, res, next){
 
